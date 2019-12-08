@@ -5,3 +5,12 @@ services:
 script:
   - docker build -t mannydesign/ci_cd .
   - docker images mannydesign/ci_cd 
+
+before_deploy:
+  - docker login -u stackgaurav.com -p Docker@1992
+
+deploy:
+  provider: script 
+  script: docker push mannydesign/ci_cd
+  on:
+    branch: master
